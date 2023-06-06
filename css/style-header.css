@@ -13,7 +13,7 @@
 }
 
 body {
-    height: 1000px;
+    height: 10000px;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑,
     "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro",
     "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI",
@@ -25,6 +25,7 @@ body {
     height: 119px;
     background-image: var(--orangecolor);
     position: fixed;
+    z-index: 1;
 }
 
 .middle-header {
@@ -200,24 +201,48 @@ body {
     color: var(--white)
 }
 
+.box-search-result {
+    padding-top: 5px;
+    width: 747px;
+    position: fixed;
+    z-index: 99999;
+}
+
 .search-result {
     background-color: var(--white);
-    margin-top: 4px;
-    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.09);
+    box-shadow: 0 0.125rem 10px rgba(0,0,0,.3);
     border-radius: 2px;
-    width: 756px;
+    padding-left: 10px;
+    font-size: 14px;
     height: 44px;
+    align-items: center;
+    justify-content: space-between;
     display: none;
 }
 
-.search-active {
-    display: block;
+.search-result-active {
+    display: flex;
 }
 
+.result-text i{
+    color: #f4907c;
+    margin-right: 5px;
+}
+
+.result-voucher {
+    margin-right: 15px;
+    color: #f4907c;
+    font-size: 20px;
+}
+
+/* .search-active {
+    display: block;
+} */
+
 .search-suggest {
-    margin-top: 6px;
     color: var(--white);
     font-size: 12px;
+    margin-top: 7px;
 }
 
 .search-suggest__item {
@@ -237,7 +262,7 @@ body {
     cursor: pointer;
     margin-right: 67px;
     margin-left: 45px;
-    margin-top: 16px;
+    margin-top: 15px;
     padding: 1.5px 0px;
     font-size: 23px;
 }
@@ -266,17 +291,6 @@ body {
     width: 400px;
     top: 33px;
     right: 430px;
-    /* animation: popup-noti-in 0.2s ease-out; */
-}
-
-@keyframes popup-noti-in{
-    from {
-        scale: 0.1;
-        transform-origin: right top;
-    }
-    to {
-        scale: 1;
-    }
 }
 
 .popup-arrow-noti {
@@ -293,7 +307,6 @@ body {
 }
 
 .noti-main {
-    /* box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.09); */
     box-shadow: 0 0.125rem 10px rgba(0,0,0,.3);
     background-color: var(--white);
     border-radius: 3px;
@@ -369,6 +382,40 @@ body {
     color: #EE4D2D;
 }
 
+.popup-cart {
+    cursor: pointer;
+    width: 400px;
+    height: 260.59px;
+    position: fixed;
+    z-index: 101;
+    font-size: 14px;
+    top: 101px;
+    right: 132px;
+    box-shadow: 0 0.125rem 10px rgba(0,0,0,.3);
+    background-color: var(--white);
+    border-radius: 2px;
+    display: none;
+}
+
+.popup-arrow-cart {
+    position: fixed;
+    color: var(--white);
+    z-index: 101;
+    font-size: 34px;
+    top: 83px;
+    right: 141px;
+}
+
+.cart-main {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.cart-main p {
+    margin-top: 20px;
+}
+
 .popup-active {
     display: block;
 }
+

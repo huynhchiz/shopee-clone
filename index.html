@@ -7,6 +7,7 @@
     <title>Shopee</title>
     <script src="https://kit.fontawesome.com/7a3791636a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style-header.css">
+    <link rel="stylesheet" href="../css/style-content.css">
 </head>
 <body>
     <!-- POP-UP-HEADER -->
@@ -39,9 +40,19 @@
         <div class="langue-vn"><p>Tiếng Việt</p></div>
         <div class="langue-eng"><p>English</p></div>
     </div>
+
+    <div class="popup-cart">
+        <div class="popup-arrow-cart">
+            <i class="fas fa-caret-up"></i>
+        </div>
+        <div class="cart-main">
+            <img src="./css/img/cart-main.png" alt="">
+            <p>Chưa Có Sản Phẩm</p>
+        </div>
+    </div>
     
 
-    <!-- header -->
+    <!-- HEADER -->
     <div class="header">
         <div class="middle-header">
             <!-- navbar -->
@@ -94,13 +105,23 @@
                     <div class="search-input">
                         <div class="search-input__bar">
                             <form role="search">
-                                <input type="text" placeholder="Đăng ký và nhận voucher bạn mới đến 70k!">
+                                <input id="search-text" type="text" placeholder="" autocomplete="off">
                             </form>
                         </div>
                         <div class="search-input__btn"><i class="fas fa-search"></i></div>
                     </div>
 
-                    <div class="search-result"></div>
+                    <div class="box-search-result">
+                        <div class="search-result">
+                            <div class="result-text">
+                                <!-- Đăng ký và nhận voucher bạn mới đến 70k! -->
+                            </div>
+                            <div class="result-voucher">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
 
                     <div class="search-suggest">
                         <div class="search-suggest__item">gợi ý 1</div>
@@ -118,6 +139,57 @@
                 </div>
                 
                 <div class="wrapper__shopcart"><i class="fas fa-shopping-cart"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="full-banner">
+            <div class="banners">
+                <div class="left-banners"></div>
+                <div class="right-banners">
+                    <div class="right-banners__top"></div>
+                    <div class="right-banners__bottom"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-item">
+                    <img src="./css/img/menu/khunggiosansale.png" alt="">
+                    <p>Khung Giờ Săn Sale</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/freeship.png" alt="">
+                    <p>Miễn Phí Vận Chuyển</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/voucher.png" alt="">
+                    <p>Voucher Giảm Đến 200.000Đ</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/hanghieu.png" alt="">
+                    <p>Hàng Hiệu Outlet Giảm 50%</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/magiamgia.png" alt="">
+                    <p>Mã Giảm Giá</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/battrend.png" alt="">
+                    <p>Bắt Trend - Giá Sốc</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/napthe.png" alt="">
+                    <p>Nạp Thẻ, Dịch Vụ & Data</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/hangqte.png" alt="">
+                    <p>Hàng Quốc Tế</p>
+                </div>
+                <div class="menu-item">
+                    <img src="./css/img/menu/gicungre.png" alt="">
+                    <p>Gì Cũng Rẻ - Mua Là Freeship</p>
+                </div>
             </div>
         </div>
     </div>
