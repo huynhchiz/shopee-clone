@@ -4,6 +4,7 @@
 }
 
 .content {
+    background-color: #f5f5f5;
     position: absolute;
     top: 119px;
     width: 100%;
@@ -169,7 +170,6 @@
 
 /* MAIN CONTENT */
 .main-content {
-    background-color: #f5f5f5;
     width: 100%;
     height: 10000px;
     position: relative;
@@ -181,9 +181,9 @@
     margin: auto;
 }
 
+    /* first-block */
 .first-block {
-    position: absolute;
-    top: 19px;
+    margin-top: 19px;
 }
 
 .first-block__title {
@@ -226,14 +226,16 @@
 .fbcl-title p,
 .fbcr-title p {
     font-size: 12px;
+    cursor: pointer;
 }
 
-.fbcl-product,
-.fbcr-product {
+.fbcl-products,
+.fbcr-products {
     display: flex;
     justify-content: space-between;
     height: 237px;
     background-color: var(--white);
+    cursor: pointer;
 }
 
 .fbcl-product-item,
@@ -256,3 +258,81 @@
     padding-top: 13px;
     color: #ee4d2d;
 }
+
+    /* second-block */
+.second-block {
+    margin-top: 19px;
+    height: 362.88px;
+    /* background-color: aquamarine; */
+}
+
+.second-block__title {
+    background-color: white;
+    height: 61px;
+    padding: 0 20px;
+    line-height: 61px;
+    color: rgba(0,0,0,.54)
+}
+
+.second-block__content {
+    width: 100%;
+    overflow: hidden;
+}
+
+.categories {
+    width: 2000px;
+    height: 301.88px;
+    display: flex;
+    border: 1px solid rgba(0,0,0,.05);
+    border-left: none;
+}
+
+.category-item {
+    width: 119px;
+    background-color: var(--white);
+    border-left: 1px solid rgba(0,0,0,.05);
+    border-right: none;
+    animation: slideCategories 1s ease forwards;
+}
+
+.category-item:first-child {
+    border-left: none;
+}
+
+.category-item:last-child {
+    border-right: 1px solid rgba(0,0,0,.05);
+}
+
+@keyframes slideCategories {
+    to {
+        transform: translateX(-480px);
+    }
+}
+
+.category-item1 {
+    height: calc(50%);
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    text-align: center;
+    padding: 0px 6px;
+}
+
+.category-item1 img,
+.category-item2 img {
+    margin-top: 12px;
+    width: 85px;
+    height: 83.5px;
+}
+
+.category-item1 p,
+.category-item2 p {
+    line-height: 1.4;
+    margin-top: 1.5px;
+    font-size: 14px;
+}
+
+.category-item2 {
+    height: calc(50% + 1px);
+    text-align: center;
+}
+
+

@@ -13,6 +13,7 @@ const searchInputBar = $('.search-input__bar')
 const boxSearchResultBar = $('.box-search-result')
 const searchResultBar = $('.search-result')
 const searchText = $('#search-text')
+const resultVoucherItem = $('.result-voucher')
 const resultSearchText = $('.result-text')
 const popupCardElement = $('.popup-cart')
 const cartElement = $('.wrapper__shopcart i')
@@ -130,15 +131,17 @@ const app = {
         resultSearchText.innerHTML = searchText.value || searchText.placeholder
         
         searchText.onkeyup = function(e) {
-            if (searchText.value != '') {
+            if (searchText.value !== '') {
                 resultSearchText.innerHTML = `
                     <i class="fas fa-store"></i> Tìm Shop "
                     ${searchText.value}"
                 `
                 searchResultBar.style.height = 36 + 'px'
+                resultVoucherItem.style.display = 'none'
             } else {
                 resultSearchText.innerHTML = searchText.placeholder
                 searchResultBar.style.height = 44 + 'px'
+                resultVoucherItem.style.display = 'block'
             }
         }
     },
@@ -177,7 +180,12 @@ const app = {
 
         //banner tiến tới 1 sau mỗi 5 giây
         setInterval(function() {
-            bannerArrowRight.click()
+            if (currentIndexBanner <= 12) {
+                currentIndexBanner++
+            } else {
+                currentIndexBanner = 1
+            }
+            getCurrentBanner()
         }, 5000)
 
         //click vào dot banner
