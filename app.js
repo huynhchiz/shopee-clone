@@ -17,10 +17,10 @@ const resultSearchText = $('.result-text')
 const popupCardElement = $('.popup-cart')
 const cartElement = $('.wrapper__shopcart i')
 const leftBanner = $('.left-banners')
+const bannerImg = $('.banner-img')
 const bannerArrowLeft = $('.arrow-left')
 const bannerArrowRight = $('.arrow-right')
 const dotsBanner = $$('.dot')
-
 
 const app = {
     handleHover() {
@@ -145,8 +145,10 @@ const app = {
 
     handleBanner() {
         let currentIndexBanner = 1;
-        function getCurrentBanner() {            
-            leftBanner.style.backgroundImage =
+        function getCurrentBanner() {
+            // bannerImg.style.animation = `slidelefttoright linear 0.5s`
+
+            bannerImg.style.backgroundImage =
             `url(./css/img/banner/w${currentIndexBanner}.jpg)`
 
             if ($('.dot-active') !== dotsBanner[currentIndexBanner - 1]) {
@@ -178,6 +180,7 @@ const app = {
             bannerArrowRight.click()
         }, 5000)
 
+        //click vào dot banner
         for (let i = 0; i < dotsBanner.length; i++) {
             dotsBanner[i].onclick = function() {
                 currentIndexBanner = i + 1
