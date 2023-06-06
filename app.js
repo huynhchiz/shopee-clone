@@ -16,7 +16,10 @@ const searchText = $('#search-text')
 const resultSearchText = $('.result-text')
 const popupCardElement = $('.popup-cart')
 const cartElement = $('.wrapper__shopcart i')
-
+const leftBanner = $('.left-banners')
+const bannerArrowLeft = $('.arrow-left')
+const bannerArrowRight = $('.arrow-right')
+const dotBanner = $$('.dot')
 
 
 const app = {
@@ -77,6 +80,32 @@ const app = {
             popupCardElement.classList.remove('popup-active')
         }
         
+        //hover vào banner left + hover vào mũi tên
+        leftBanner.onmouseover = function() {
+            bannerArrowLeft.classList.add('display-arrows-banner')
+            bannerArrowRight.classList.add('display-arrows-banner')
+        },
+        leftBanner.onmouseout = function() {
+            bannerArrowLeft.classList.remove('display-arrows-banner')
+            bannerArrowRight.classList.remove('display-arrows-banner')
+        }
+
+        bannerArrowLeft.onmouseover = function() {
+            bannerArrowLeft.classList.add('arrow-active')
+        }
+
+        bannerArrowLeft.onmouseout = function() {
+            bannerArrowLeft.classList.remove('arrow-active')
+        }
+
+        bannerArrowRight.onmouseover = function() {
+            bannerArrowRight.classList.add('arrow-active')
+        }
+
+        bannerArrowRight.onmouseout = function() {
+            bannerArrowRight.classList.remove('arrow-active')
+        }
+
     },
 
     handleSearchBar() {
@@ -114,12 +143,40 @@ const app = {
         }
     },
 
-    
+    handleBanner() {
+        let currentIndexBanner = 1;
+
+        bannerArrowLeft.onclick = function() {
+            if (currentIndexBanner > 1) {
+                currentIndexBanner--
+            } else {
+                currentIndexBanner = 13
+            }
+            leftBanner.style.backgroundImage =
+            `url(./css/img/banner/w${currentIndexBanner}.jpg)`
+        }
+
+        bannerArrowRight.onclick = function() {
+            if (currentIndexBanner <= 12) {
+                currentIndexBanner++
+            } else {
+                currentIndexBanner = 1
+            }
+            leftBanner.style.backgroundImage =
+            `url(./css/img/banner/w${currentIndexBanner}.jpg)`
+        }
+
+        setInterval(function() {
+            bannerArrowRight.click()
+        }, 2500)
+    },
 
     start() {
         this.handleHover()
 
         this.handleSearchBar()
+
+        this.handleBanner()
     }
 }
 
