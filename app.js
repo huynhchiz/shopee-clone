@@ -19,7 +19,7 @@ const cartElement = $('.wrapper__shopcart i')
 const leftBanner = $('.left-banners')
 const bannerArrowLeft = $('.arrow-left')
 const bannerArrowRight = $('.arrow-right')
-const dotBanner = $$('.dot')
+const dotsBanner = $$('.dot')
 
 
 const app = {
@@ -145,6 +145,15 @@ const app = {
 
     handleBanner() {
         let currentIndexBanner = 1;
+        function getCurrentBanner() {            
+            leftBanner.style.backgroundImage =
+            `url(./css/img/banner/w${currentIndexBanner}.jpg)`
+
+            if ($('.dot-active') !== dotsBanner[currentIndexBanner - 1]) {
+                $('.dot-active').classList.remove('dot-active')
+            }
+            dotsBanner[currentIndexBanner - 1].classList.add('dot-active')
+        }
 
         bannerArrowLeft.onclick = function() {
             if (currentIndexBanner > 1) {
@@ -152,8 +161,7 @@ const app = {
             } else {
                 currentIndexBanner = 13
             }
-            leftBanner.style.backgroundImage =
-            `url(./css/img/banner/w${currentIndexBanner}.jpg)`
+            getCurrentBanner()
         }
 
         bannerArrowRight.onclick = function() {
@@ -162,13 +170,20 @@ const app = {
             } else {
                 currentIndexBanner = 1
             }
-            leftBanner.style.backgroundImage =
-            `url(./css/img/banner/w${currentIndexBanner}.jpg)`
+            getCurrentBanner()
         }
 
+        //banner tiến tới 1 sau mỗi 5 giây
         setInterval(function() {
             bannerArrowRight.click()
-        }, 2500)
+        }, 5000)
+
+        for (let i = 0; i < dotsBanner.length; i++) {
+            dotsBanner[i].onclick = function() {
+                currentIndexBanner = i + 1
+                getCurrentBanner()
+            }
+        }
     },
 
     start() {
