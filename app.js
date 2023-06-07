@@ -25,6 +25,9 @@ const dotsBanner = $$('.dot')
 const categories = $('.categories')
 const secondBlockArrowLeft = $('.second-block__arrow-left')
 const secondBlockArrowRight = $('.second-block__arrow-right')
+const thirdBlockProductDiv = $('.third-block-products')
+const thirdBlockArrowLeft = $('.third-block__arrow-left')
+const thirdBlockArrowRight = $('.third-block__arrow-right')
 
 
 const app = {
@@ -221,6 +224,78 @@ const app = {
         }
     },
 
+    listProductBlock3: [
+        {name: "i1", url: "./css/img/block3/i1.jpg", price: "₫169.000", sold: 63},
+        {name: "i2", url: "./css/img/block3/i2.jpg", price: "₫69.000", sold: 0},
+        {name: "i3", url: "./css/img/block3/i3.jpg", price: "₫19.000", sold: 0},
+        {name: "i4", url: "./css/img/block3/i4.jpg", price: "₫180.000", sold: 0},
+        {name: "i5", url: "./css/img/block3/i5.jpg", price: "₫200.000", sold: 0},
+        {name: "i6", url: "./css/img/block3/i6.jpg", price: "₫19.000", sold: 0},
+        {name: "i7", url: "./css/img/block3/i7.jpg", price: "₫599.000", sold: 0},
+        {name: "i8", url: "./css/img/block3/i8.jpg", price: "₫169.000", sold: 79},
+        {name: "i9", url: "./css/img/block3/i9.jpg", price: "₫169.000", sold: 0},
+        {name: "i10", url: "./css/img/block3/i10.jpg", price: "₫169.000", sold: 0},
+        {name: "i11", url: "./css/img/block3/i11.jpg", price: "₫169.000", sold: 0},
+        {name: "i12", url: "./css/img/block3/i12.jpg", price: "₫169.000", sold: 0},
+        {name: "i13", url: "./css/img/block3/i13.jpg", price: "₫169.000", sold: 0},
+        {name: "i14", url: "./css/img/block3/i14.jpg", price: "₫169.000", sold: 0},
+        {name: "i15", url: "./css/img/block3/i15.jpg", price: "₫100.000", sold: 0},       
+        {name: "i16", url: "./css/img/block3/i16.jpg", price: "₫999.000", sold: 0},       
+    ],
+
+    rederProductThirdBlock() {
+        let html = ''
+        for (let i = 0; i < this.listProductBlock3.length; i++) {
+            let product = this.listProductBlock3[i]
+            html += `
+                <div class="third-block-products-item">
+                    <img src="${product.url}">
+                    <p>${product.price}</p>
+                    <div class="third-block-sold-quantity" style="background: linear-gradient(90deg, #ee4d2d 
+                        ${product.sold}%, #ffbda6 ${100 - product.sold}%)">${product.sold !== 0 ? "ĐÃ BÁN " +
+                        product.sold : "ĐANG BÁN CHẠY"}
+                    </div>
+                </div>
+            `
+        }
+        thirdBlockProductDiv.innerHTML = html
+    },
+
+    handleThirdBlock() {
+        let numberTranslateX = 0
+        thirdBlockArrowRight.onclick = function() {
+            numberTranslateX += 1000
+            thirdBlockProductDiv.style.transform = `translateX(-${numberTranslateX}px)`
+            if(numberTranslateX === 1000) {
+                setTimeout(function() {
+                thirdBlockArrowLeft.classList.add('third-block__arrow-active')
+            }, 600)
+            } else if (numberTranslateX >= 2000) {
+                setTimeout(function() {
+                    thirdBlockArrowRight.classList.remove('third-block__arrow-active')
+                    thirdBlockArrowLeft.classList.add('third-block__arrow-active')
+                }, 600)
+            }
+        }
+
+        thirdBlockArrowLeft.onclick = function() {
+            if (numberTranslateX < 1999) {
+                numberTranslateX -= 1000
+                thirdBlockProductDiv.style.transform = `translateX(0px)`
+                setTimeout(function() {
+                    thirdBlockArrowLeft.classList.remove('third-block__arrow-active')
+                }, 600)
+            } else {
+                numberTranslateX -= 1000
+                thirdBlockProductDiv.style.transform = `translateX(-1000px)`
+                setTimeout(function() {
+                    thirdBlockArrowRight.classList.add('third-block__arrow-active')
+                }, 600)
+            }
+        }
+
+    },
+
     start() {
         this.handleHover()
 
@@ -229,6 +304,10 @@ const app = {
         this.handleBanner()
 
         this.handleSecondblock()
+
+        this.rederProductThirdBlock()
+
+        this.handleThirdBlock()
     }
 }
 
