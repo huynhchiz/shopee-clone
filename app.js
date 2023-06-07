@@ -22,8 +22,13 @@ const bannerImg = $('.banner-img')
 const bannerArrowLeft = $('.arrow-left')
 const bannerArrowRight = $('.arrow-right')
 const dotsBanner = $$('.dot')
+const categories = $('.categories')
+const secondBlockArrowLeft = $('.second-block__arrow-left')
+const secondBlockArrowRight = $('.second-block__arrow-right')
+
 
 const app = {
+    //HEADER + BANNER + MENU
     handleHover() {
         //hover vào tải ứng dụng
         downloadElement.onmouseover = function() {
@@ -197,12 +202,33 @@ const app = {
         }
     },
 
+    //CONTENT
+    handleSecondblock() {
+        secondBlockArrowRight.onclick = function() {
+            categories.style.animation = `slideCategoriesToRight 500ms ease forwards`
+            setTimeout(function() {
+                secondBlockArrowRight.classList.remove('second-block__arrow-active')
+                secondBlockArrowLeft.classList.add('second-block__arrow-active')
+            }, 600)
+        }
+
+        secondBlockArrowLeft.onclick = function() {
+            categories.style.animation = `slideCategoriesToLeft 500ms ease forwards`
+            setTimeout(function() {
+                secondBlockArrowLeft.classList.remove('second-block__arrow-active')
+                secondBlockArrowRight.classList.add('second-block__arrow-active')
+            }, 600)
+        }
+    },
+
     start() {
         this.handleHover()
 
         this.handleSearchBar()
 
         this.handleBanner()
+
+        this.handleSecondblock()
     }
 }
 
