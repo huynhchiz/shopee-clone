@@ -18,7 +18,9 @@ const resultSearchText = $('.result-text')
 const popupCardElement = $('.popup-cart')
 const cartElement = $('.wrapper__shopcart i')
 const leftBanner = $('.left-banners')
+const bannerImgs = $('.banner-imgs')
 const bannerImg = $('.banner-img')
+const bannerImgimg = $('.banner-img img')
 const bannerArrowLeft = $('.arrow-left')
 const bannerArrowRight = $('.arrow-right')
 const dotsBanner = $$('.dot')
@@ -154,58 +156,75 @@ const app = {
         }
     },
 
-    handleBanner() {
-        let currentIndexBanner = 1;
-        function getCurrentBanner() {
-            // bannerImg.style.animation = `slidelefttoright linear 0.5s`
+    handleSlideBanner() {
+        //render banners
+        function renderBanner() {
+            let html = ''
+            for (let i = 0; i < 13; i++) {
+                html += `
+                    <div class="banner-img">
+                        <img class="imgbanner" src="./css/img/banner/w${i+1}.jpg">
+                    </div>
+                `
+            } 
+            bannerImgs.innerHTML = html
+        }
+        renderBanner()
 
-            bannerImg.style.backgroundImage =
-            `url(./css/img/banner/w${currentIndexBanner}.jpg)`
+        let currentIndexBanner = 0;
+        let pxTransOnebanner = 796.67;
 
-            if ($('.dot-active') !== dotsBanner[currentIndexBanner - 1]) {
+        function slideToCurrentBanner() {
+            let numberTranslateX = (currentIndexBanner * pxTransOnebanner)
+            bannerImgs.style.transform = `translateX(-${numberTranslateX}px)`
+
+            if ($('.dot-active') !== dotsBanner[currentIndexBanner]) {
                 $('.dot-active').classList.remove('dot-active')
             }
-            dotsBanner[currentIndexBanner - 1].classList.add('dot-active')
+            dotsBanner[currentIndexBanner].classList.add('dot-active')
         }
-
+        
+        //click nút mũi tên trái
         bannerArrowLeft.onclick = function() {
-            if (currentIndexBanner > 1) {
+            if (currentIndexBanner > 0) {
                 currentIndexBanner--
             } else {
-                currentIndexBanner = 13
+                currentIndexBanner = 12
             }
-            getCurrentBanner()
+            slideToCurrentBanner()
         }
 
+        //click nút mũi tên phải
         bannerArrowRight.onclick = function() {
-            if (currentIndexBanner <= 12) {
+            if (currentIndexBanner <= 11) {
                 currentIndexBanner++
             } else {
-                currentIndexBanner = 1
+                currentIndexBanner = 0
             }
-            getCurrentBanner()
+            slideToCurrentBanner()
         }
-
-        //banner tiến tới 1 sau mỗi 5 giây
-        setInterval(function() {
-            if (currentIndexBanner <= 12) {
-                currentIndexBanner++
-            } else {
-                currentIndexBanner = 1
-            }
-            getCurrentBanner()
-        }, 5000)
 
         //click vào dot banner
         for (let i = 0; i < dotsBanner.length; i++) {
             dotsBanner[i].onclick = function() {
-                currentIndexBanner = i + 1
-                getCurrentBanner()
+                currentIndexBanner = i
+                slideToCurrentBanner()
             }
         }
+
+        //banner tiến tới 1 sau mỗi 5 giây
+        setInterval(function() {
+            if (currentIndexBanner <= 11) {
+                currentIndexBanner++
+            } else {
+                currentIndexBanner = 0
+            }
+            slideToCurrentBanner()
+        }, 5000)
     },
 
     //CONTENT
+    ////second-block
     handleSecondblock() {
         secondBlockArrowRight.onclick = function() {
             categories.style.animation = `slideCategoriesToRight 500ms ease forwards`
@@ -224,23 +243,24 @@ const app = {
         }
     },
 
+    ////third-block
     listProductBlock3: [
-        {name: "i1", url: "./css/img/block3/i1.jpg", price: "₫169.000", sold: 63},
-        {name: "i2", url: "./css/img/block3/i2.jpg", price: "₫69.000", sold: 0},
-        {name: "i3", url: "./css/img/block3/i3.jpg", price: "₫19.000", sold: 0},
-        {name: "i4", url: "./css/img/block3/i4.jpg", price: "₫180.000", sold: 0},
-        {name: "i5", url: "./css/img/block3/i5.jpg", price: "₫200.000", sold: 0},
-        {name: "i6", url: "./css/img/block3/i6.jpg", price: "₫19.000", sold: 0},
-        {name: "i7", url: "./css/img/block3/i7.jpg", price: "₫599.000", sold: 0},
-        {name: "i8", url: "./css/img/block3/i8.jpg", price: "₫169.000", sold: 79},
-        {name: "i9", url: "./css/img/block3/i9.jpg", price: "₫169.000", sold: 0},
-        {name: "i10", url: "./css/img/block3/i10.jpg", price: "₫169.000", sold: 0},
-        {name: "i11", url: "./css/img/block3/i11.jpg", price: "₫169.000", sold: 0},
-        {name: "i12", url: "./css/img/block3/i12.jpg", price: "₫169.000", sold: 0},
-        {name: "i13", url: "./css/img/block3/i13.jpg", price: "₫169.000", sold: 0},
-        {name: "i14", url: "./css/img/block3/i14.jpg", price: "₫169.000", sold: 0},
-        {name: "i15", url: "./css/img/block3/i15.jpg", price: "₫100.000", sold: 0},       
-        {name: "i16", url: "./css/img/block3/i16.jpg", price: "₫999.000", sold: 0},       
+        {name: "i1", url: "./css/img/block3/i1.jpg", price: "₫169.000", sold: 63, discount: 50},
+        {name: "i2", url: "./css/img/block3/i2.jpg", price: "₫69.000", sold: 0, discount: 56},
+        {name: "i3", url: "./css/img/block3/i3.jpg", price: "₫19.000", sold: 0, discount: 12},
+        {name: "i4", url: "./css/img/block3/i4.jpg", price: "₫180.000", sold: 5, discount: 45},
+        {name: "i5", url: "./css/img/block3/i5.jpg", price: "₫200.000", sold: 0, discount: 78},
+        {name: "i6", url: "./css/img/block3/i6.jpg", price: "₫19.000", sold: 0, discount: 90},
+        {name: "i7", url: "./css/img/block3/i7.jpg", price: "₫599.000", sold: 0, discount: 12},
+        {name: "i8", url: "./css/img/block3/i8.jpg", price: "₫169.000", sold: 79, discount: 5},
+        {name: "i9", url: "./css/img/block3/i9.jpg", price: "₫169.000", sold: 0, discount: 67},
+        {name: "i10", url: "./css/img/block3/i10.jpg", price: "₫169.000", sold: 0, discount: 80},
+        {name: "i11", url: "./css/img/block3/i11.jpg", price: "₫169.000", sold: 10, discount: 88},
+        {name: "i12", url: "./css/img/block3/i12.jpg", price: "₫169.000", sold: 0, discount: 50},
+        {name: "i13", url: "./css/img/block3/i13.jpg", price: "₫169.000", sold: 0, discount: 11},
+        {name: "i14", url: "./css/img/block3/i14.jpg", price: "₫169.000", sold: 0, discount: 56},
+        {name: "i15", url: "./css/img/block3/i15.jpg", price: "₫100.000", sold: 0, discount: 50},       
+        {name: "i16", url: "./css/img/block3/i16.jpg", price: "₫999.000", sold: 0, discount: 70},       
     ],
 
     rederProductThirdBlock() {
@@ -249,16 +269,32 @@ const app = {
             let product = this.listProductBlock3[i]
             html += `
                 <div class="third-block-products-item">
-                    <img src="${product.url}">
-                    <p>${product.price}</p>
-                    <div class="third-block-sold-quantity" style="background: linear-gradient(90deg, #ee4d2d 
-                        ${product.sold}%, #ffbda6 ${100 - product.sold}%)">${product.sold !== 0 ? "ĐÃ BÁN " +
-                        product.sold : "ĐANG BÁN CHẠY"}
+                    <div class="third-block-mall">
+                        <img class="mall-img" src="./css/img/mall.png">
+                        <div class="triangle-mall"></div>
+                        <div class="third-block-discount">
+                            <p class="third-block-discount-percent">${product.discount}%</p>
+                            <p class="third-block-discount-giam">GIẢM</p>
+                        </div>
+                        <div class="third-block-discount-tail"></div>
+                        <img class="third-block-img" src="${product.url}">
+                        <p class="third-block-price">${product.price}
+                            ${product.sold > 50 ? '<img class="chayhang-img" src="./css/img/chayhang.png">' : '' }                            
+                        </p>
+                        <div class="third-block-sold-quantity" style="background: 
+                            ${product.sold > 0 ?
+                                'linear-gradient(90deg, #ee4d2d ' + product.sold + '%, #ffbda6 ' + (100 - product.sold) + '%)">' :
+                                '#ffbda6">'}
+                            ${product.sold !== 0 ? "ĐÃ BÁN " + product.sold : "ĐANG BÁN CHẠY"}
+                            
+                        </div>
                     </div>
                 </div>
             `
         }
         thirdBlockProductDiv.innerHTML = html
+
+        
     },
 
     handleThirdBlock() {
@@ -296,18 +332,35 @@ const app = {
 
     },
 
+    ////third-half-block
+    handleThirdHalfBlock() {
+        $('.thirdhalf-block__option1').onclick = function () {
+            console.log('option1')
+        }
+        $('.thirdhalf-block__option2').onclick = function () {
+            console.log('option2')
+        }
+        $('.thirdhalf-block__option3').onclick = function () {
+            console.log('option3')
+        }
+    },
+
     start() {
         this.handleHover()
 
         this.handleSearchBar()
 
-        this.handleBanner()
+        this.handleSlideBanner()
+
+        // this.handleBanner()
 
         this.handleSecondblock()
 
         this.rederProductThirdBlock()
 
         this.handleThirdBlock()
+
+        this.handleThirdHalfBlock()
     }
 }
 
