@@ -21,8 +21,8 @@ const leftBanner = $('.left-banners')
 const bannerImgs = $('.banner-imgs')
 const bannerImg = $('.banner-img')
 const bannerImgimg = $('.banner-img img')
-const bannerArrowLeft = $('.arrow-left')
-const bannerArrowRight = $('.arrow-right')
+const bannerArrowLeft = $('.left-banners-arrow.arrow-left')
+const bannerArrowRight = $('.left-banners-arrow.arrow-right')
 const dotsBanner = $$('.dot')
 const categories = $('.categories')
 const secondBlockArrowLeft = $('.second-block__arrow-left')
@@ -30,7 +30,15 @@ const secondBlockArrowRight = $('.second-block__arrow-right')
 const thirdBlockProductDiv = $('.third-block-products')
 const thirdBlockArrowLeft = $('.third-block__arrow-left')
 const thirdBlockArrowRight = $('.third-block__arrow-right')
-
+const fourthBlockBanners = $('.fourth-block__content-left-banners')
+const fourthBlockArrowLeft = $('.fourth-block-arrow.arrow-left')
+const fourthBlockArrowRight = $('.fourth-block-arrow.arrow-right')
+const fourthBlockDots = $$('.fb-dot')
+const fourthBlockContentRightDiv = $('.fourth-block__content-right')
+const fourthBlockContentRight = $('.fourth-block__content-right-main')
+const fourthBlockContentRightItem = $('.fourth-block__content-right-item')
+const fourthBlockContentArrowLeft = $('.fourth-block__arrow-left')
+const fourthBlockContentArrowRight = $('.fourth-block__arrow-right')
 
 const app = {
     //HEADER + BANNER + MENU
@@ -178,10 +186,12 @@ const app = {
             let numberTranslateX = (currentIndexBanner * pxTransOnebanner)
             bannerImgs.style.transform = `translateX(-${numberTranslateX}px)`
 
-            if ($('.dot-active') !== dotsBanner[currentIndexBanner]) {
-                $('.dot-active').classList.remove('dot-active')
-            }
-            dotsBanner[currentIndexBanner].classList.add('dot-active')
+            setTimeout(function() {
+                if ($('.dot-active') !== dotsBanner[currentIndexBanner]) {
+                    $('.dot-active').classList.remove('dot-active')
+                }
+                dotsBanner[currentIndexBanner].classList.add('dot-active')
+            }, 500)
         }
         
         //click nút mũi tên trái
@@ -293,8 +303,6 @@ const app = {
             `
         }
         thirdBlockProductDiv.innerHTML = html
-
-        
     },
 
     handleThirdBlock() {
@@ -345,15 +353,150 @@ const app = {
         }
     },
 
+    ////fourth-block
+    renderFourthBlockBanner() {
+        let html = ''
+        for (let i = 0; i < 5; i++) {
+            html += `
+                <div class="fourth-block__content-left-img-div">
+                    <img class="fourth-block__content-left-img" src="./css/img/block4/block4-${i+1}.jpg">
+                </div>
+            `   
+        } fourthBlockBanners.innerHTML = html
+    },
+
+    handleFourthBlockBanner() {
+        let currentIndexBanner = 0;
+        let pxTransOnebanner = 390;
+
+        function handleFourthBlockDots() {
+            if ($('.fb-dot-active') !== fourthBlockDots[currentIndexBanner]) {
+                $('.fb-dot-active').classList.remove('fb-dot-active')
+            }
+            fourthBlockDots[currentIndexBanner].classList.add('fb-dot-active')
+        }
+        
+        function slideToCurrentBanner() {
+            let numberTranslateX = (currentIndexBanner * pxTransOnebanner)
+            fourthBlockBanners.style.transform = `translateX(-${numberTranslateX}px)`
+
+            setTimeout(handleFourthBlockDots, 500)
+        }     
+
+        function forwardBanner() {
+            if (currentIndexBanner <= 3) {
+                currentIndexBanner++
+            } else {
+                currentIndexBanner = 0
+            }
+            slideToCurrentBanner()
+        }   
+
+        //banner tiến tới 1 sau mỗi 5 giây
+        let autoNextBanner = setInterval(forwardBanner, 5000)
+
+        autoNextBanner
+
+        fourthBlockArrowLeft.onclick = function() {
+            if (currentIndexBanner > 0) {
+                currentIndexBanner--
+            } else {
+                currentIndexBanner = 4
+            }
+            slideToCurrentBanner()
+        }
+
+        fourthBlockArrowRight.onclick = function() {                      
+            forwardBanner()
+        }
+
+        // click vào dot banner
+        for (let i = 0; i < fourthBlockDots.length; i++) {
+            fourthBlockDots[i].onclick = function() {
+                currentIndexBanner = i
+                slideToCurrentBanner()            
+            }
+        }
+    },
+
+    listFourthBlockContent: [
+        {idCate: 1, src: "./css/img/block4/content/c1.png", description: "Mua là có quà"},
+        {idCate: 2, src: "./css/img/block4/content/c2.png", description: "Giảm đến 50%"},
+        {idCate: 3, src: "./css/img/block4/content/c3.png", description: "Mua 1 tặng 2"},
+        {idCate: 4, src: "./css/img/block4/content/c4.png", description: "Mua là có quà"},
+        {idCate: 5, src: "./css/img/block4/content/c5.png", description: "Mua 1 tặng 1"},
+        {idCate: 6, src: "./css/img/block4/content/c6.png", description: "Deal bia chất"},
+        {idCate: 7, src: "./css/img/block4/content/c7.png", description: "Sale chào hè 50%"},
+        {idCate: 8, src: "./css/img/block4/content/c8.png", description: "Siêu ưu đãi độc"},
+        {idCate: 9, src: "./css/img/block4/content/c9.png", description: "Nội y Sabina 9k"},
+        {idCate: 10, src: "./css/img/block4/content/c10.png", description: "Voucher đến 1 triệu"},
+        {idCate: 11, src: "./css/img/block4/content/c11.png", description: "Mua là có quà"},
+        {idCate: 12, src: "./css/img/block4/content/c12.png", description: "Collagen da khỏe t"},
+        {idCate: 13, src: "./css/img/block4/content/c13.png", description: "Mua 2 tặng 1"},
+        {idCate: 14, src: "./css/img/block4/content/c14.png", description: "Mua là có quà"},
+        {idCate: 15, src: "./css/img/block4/content/c15.png", description: "Ưu đãi đến 50%"},
+        {idCate: 16, src: "./css/img/block4/content/c15.png", description: "Ưu đãi đến 50%"},
+    ],
+
+    handleFourthBlockContent() {
+        function render() {
+            let html = ''
+            for (let i = 0; i < app.listFourthBlockContent.length - 1; i+=2) {
+                html += `
+                    <div class="fourth-block__content-right-item">
+                        <div class="fourth-block-item1">
+                            <div class="fourth-block-item1-inside">
+                                <img src="${app.listFourthBlockContent[i].src}">
+                                <p>${app.listFourthBlockContent[i].description}</p>
+                            </div>
+                        </div>
+                        <div class="fourth-block-item2">
+                            <div class="fourth-block-item2-inside">
+                                ${i >= 13 ? '<div class="last-item-fourthblock"><label>Xem tất cả</label><i class="fas fa-angle-right"></i></div>' : 
+                                '<img src="'+ app.listFourthBlockContent[i+1].src + '"><p>'+ app.listFourthBlockContent[i+1].description +'</p>'}
+                            </div>
+                        </div>
+                    </div>
+                `
+            } fourthBlockContentRight.innerHTML = html
+        }
+        render()
+        
+        let countTranslate = 0;
+        let pxTranslateAtOne = 800;
+        let numberTranslateX = (countTranslate * pxTranslateAtOne)
+
+        fourthBlockContentArrowRight.onclick = function() {
+            countTranslate++
+            fourthBlockContentRight.style.transform = `translateX(-800px)`
+            setTimeout(function() {
+                fourthBlockContentArrowLeft.classList.add('fourth-block__arrow-active')
+                fourthBlockContentArrowRight.classList.remove('fourth-block__arrow-active')
+            }, 600)
+        }
+
+        fourthBlockContentArrowLeft.onclick = function() {
+            countTranslate++
+            fourthBlockContentRight.style.transform = `translateX(0)`
+            setTimeout(function() {
+                fourthBlockContentArrowLeft.classList.remove('fourth-block__arrow-active')
+                fourthBlockContentArrowRight.classList.add('fourth-block__arrow-active')
+            }, 600)
+        }
+
+
+    },
+
     start() {
+        //header
         this.handleHover()
 
         this.handleSearchBar()
 
+        //banner + menu
         this.handleSlideBanner()
 
-        // this.handleBanner()
-
+        //main content
         this.handleSecondblock()
 
         this.rederProductThirdBlock()
@@ -361,6 +504,12 @@ const app = {
         this.handleThirdBlock()
 
         this.handleThirdHalfBlock()
+
+        this.renderFourthBlockBanner()
+
+        this.handleFourthBlockBanner()
+
+        this.handleFourthBlockContent()
     }
 }
 
