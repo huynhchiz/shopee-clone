@@ -39,6 +39,9 @@ const fourthBlockContentRight = $('.fourth-block__content-right-main')
 const fourthBlockContentRightItem = $('.fourth-block__content-right-item')
 const fourthBlockContentArrowLeft = $('.fourth-block__arrow-left')
 const fourthBlockContentArrowRight = $('.fourth-block__arrow-right')
+const fifthBlockProducts = $('.fifth-block-products')
+const fifthBlockArrowRight = $('.fifth-block__arrow-right')
+const fifthBlockArrowLeft = $('.fifth-block__arrow-left')
 
 const app = {
     //HEADER + BANNER + MENU
@@ -487,6 +490,55 @@ const app = {
 
     },
 
+    ////fifth-block
+    listFifthBlockProduct: [
+        {pid: 1, url: "./css/img/block5/i1.jpg", quantitysold: "Bán 15k+ / tháng", des: "Bảng Viết Tự Xóa Màn Hình Led Thông Minh"},
+        {pid: 2, url: "./css/img/block5/i2.jpg", quantitysold: "Bán 46k+ / tháng", des: "Áo Thun Nữ Ngắn Tay"},
+        {pid: 3, url: "./css/img/block5/i3.jpg", quantitysold: "Bán 21k+ / tháng", des: "Áo Thun Nam Có Cổ"},
+        {pid: 4, url: "./css/img/block5/i4.jpg", quantitysold: "Bán 4k+ / tháng", des: "Keycap Pbt"},
+        {pid: 5, url: "./css/img/block5/i5.jpg", quantitysold: "Bán 138k+ / tháng", des: "Đầu Motor Quạt"},
+        {pid: 6, url: "./css/img/block5/i6.jpg", quantitysold: "Bán 2k+ / tháng", des: "Khẩu Trang Unicham"},
+        {pid: 7, url: "./css/img/block5/i7.jpg", quantitysold: "Bán 139k+ / tháng", des: "Áo Thun Polo Nam Ngắn Tay"},
+        {pid: 8, url: "./css/img/block5/i8.jpg", quantitysold: "Bán 118k+ / tháng", des: "Bông Tẩy Trang 3 Lớp Cotton Pads"},
+        {pid: 9, url: "./css/img/block5/i9.jpg", quantitysold: "Bán 16k+ / tháng", des: "Chân Váy Xếp Ly Dài"},
+        {pid: 10, url: "./css/img/block5/i10.jpg", quantitysold: "Bán 115k+ / tháng", des: "Cuộn Len"},
+        {pid: 11, url: "./css/img/block5/i11.jpg", quantitysold: "Bán 11k+ / tháng", des: "Áo Thun Croptop Tay Ngắn"},
+    ],
+
+    renderFifthBlockProduct() {
+        let html = ''
+        for (let i = 0; i < this.listFifthBlockProduct.length; i++) {
+            html += `
+                <div class="fifth-block-product">
+                    <div class="fifth-block-product-item">
+                        <img class="fifth-block-top-img" src="./css/img/block5/top.png" alt="">
+                        <img class="fifth-block-product-item-img" src="${this.listFifthBlockProduct[i].url}">
+                        <p class="fifth-block-product-item-quantitysold">${this.listFifthBlockProduct[i].quantitysold}</p>
+                    </div>
+                    <p class="fifth-block-product-des">${this.listFifthBlockProduct[i].des}</p>
+                </div>
+            `
+        } fifthBlockProducts.innerHTML = html
+    },
+
+    handleFifthBlockProduct() {
+        fifthBlockArrowRight.onclick = function() {
+            fifthBlockProducts.style.transform = `translateX(-1000px)`
+            setTimeout(function(){
+                fifthBlockArrowLeft.classList.add('fifth-block__arrow-active')
+                fifthBlockArrowRight.classList.remove('fifth-block__arrow-active')
+            }, 600)
+        }
+
+        fifthBlockArrowLeft.onclick = function() {
+            fifthBlockProducts.style.transform = `translateX(0px)`
+            setTimeout(function(){
+                fifthBlockArrowRight.classList.add('fifth-block__arrow-active')
+                fifthBlockArrowLeft.classList.remove('fifth-block__arrow-active')
+            }, 600)
+        }
+    },
+
     start() {
         //header
         this.handleHover()
@@ -510,6 +562,10 @@ const app = {
         this.handleFourthBlockBanner()
 
         this.handleFourthBlockContent()
+
+        this.renderFifthBlockProduct()
+
+        this.handleFifthBlockProduct()
     }
 }
 

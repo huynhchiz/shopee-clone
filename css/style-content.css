@@ -919,3 +919,141 @@
 .fourth-block__arrow-active {
     display: block;
 }
+
+    /* fifth-block */
+.fifth-block {
+    margin-top: 21px;
+    height: 351px;
+    position: relative;
+    background-color: var(--white);
+}
+
+.fifth-block__title {
+    padding: 16px 20px;
+    height: 61px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.fifth-block__title .title1 {
+    color: #ee4d2d;
+    cursor: pointer;
+    margin-top: 1px;
+    font-size: 16px;
+}
+
+.fifth-block__title .title2 {
+    color: #ee4d2d;
+    cursor: pointer;
+    margin-top: 1px;
+    margin-right: 1px;
+    padding: 5px 7px;
+    font-size: 14px;
+}
+
+.fifth-block__content {
+    width: 100%;
+    height: 290px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.fifth-block-products {
+    width: 20000px;
+    height: 100%;
+    display: flex;
+    transition: 500ms ease;
+    /* transform: translateX(-1000px); */
+}
+
+.fifth-block-product {
+    width: 200px;
+    padding: 20px 10px;
+}
+
+.fifth-block-product-item {
+    height: 180px;
+    margin: auto;
+    position: relative;
+}
+
+.fifth-block-product-item-img {
+    width: 100%;
+    height: 100%;
+}
+
+.fifth-block-top-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 30px;
+}
+
+.fifth-block-product-item-quantitysold {
+    font-size: 14px;
+    position: absolute;
+    padding: 6px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fffbee;    
+    background-color: rgba(0,0,0,.26);
+}
+
+.fifth-block-product-des {
+    font-size: 18px;
+    color: #555555;
+    margin-top: 20px;
+    line-height: 1.5625rem;
+    /* khi chuỗi quá dài muốn cắt bớt thành ba chấm */
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;    
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.fifth-block__arrow-right {
+    background-color: var(--white);
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,.12);
+    padding: 3.5px 7.5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 193px;
+    right: -12px;
+    cursor: pointer;
+    display: none;
+}
+
+.fifth-block__arrow-left {
+    background-color: var(--white);
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,.12);
+    padding: 3.5px 7.5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 193px;
+    left: -12px;
+    cursor: pointer;
+    display: none;
+}
+
+.fifth-block__arrow-right i,
+.fifth-block__arrow-left i {
+    opacity: 0.5;
+}
+
+.fifth-block__content:hover + .fifth-block__arrow-right,
+.fifth-block__arrow-right:hover,
+.fifth-block__content:hover ~ .fifth-block__arrow-left,
+.fifth-block__arrow-left:hover {
+    transform: scale(2);
+    transition: ease 200ms;
+}
+
+.fifth-block__arrow-active {
+    display: block;
+}
