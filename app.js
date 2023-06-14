@@ -1,3 +1,7 @@
+Number.prototype.format = function(){
+    return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+ };
+
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
@@ -42,6 +46,7 @@ const fourthBlockContentArrowRight = $('.fourth-block__arrow-right')
 const fifthBlockProducts = $('.fifth-block-products')
 const fifthBlockArrowRight = $('.fifth-block__arrow-right')
 const fifthBlockArrowLeft = $('.fifth-block__arrow-left')
+const sixthBlockContentProducts = $('.sixth-block__content-products')
 
 const app = {
     //HEADER + BANNER + MENU
@@ -539,6 +544,208 @@ const app = {
         }
     },
 
+    ////sixth-block
+    listSixBlockProduct: [
+        {pid: 1, name: "Tai nghe Bluetooth M10 Pro, Tai nghe không dây M10 Pro phiên bản nâng cấp Pin trâu, chạm cảm ứng",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-leqivbzdtgaa75_tn",
+        price: 119000, sold: 121, discount: 21, flashsale: false},
+        {pid: 2, name: "Vỏ bảo vệ hộp tai nghe bằng silicon dẻo cao cấp cho AirPods Pro 2nd Airpods pro / Airpod 3 / Airpod 1/2（Not Airpods)",
+        url: "https://down-vn.img.susercontent.com/file/41a3a6eb048036feb7f4c6eb534c1a1a_tn",
+        price: 9000, sold: 1300, discount: 10, flashsale: true},
+        {pid: 3, name: "Áo Phông In Chữ SAINT Áo Thun Nam Tay Lỡ Unisex Form Rộng Cao Cấp 100% Thấm Hút Mồ Hôi Hot Trend 2023 ABC",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lg2j0add9nqi82_tn",
+        price: 13000, sold: 121, discount: 50, flashsale: false},
+        {pid: 4, name: "Dép nam nữ quai ngang đúc chữ CD thời trang sành điệu, dép cao cấp, mẫu mới nhất, hot trend, hithot 2023",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh7tgu32kzxv73_tn",
+        price: 2400, sold: 947, discount: 56, flashsale: true},
+        {pid: 5, name: "Loa bluetooth mini 311 BINTECH không dây,nghe nhạc,giá rẻ,công nghệ blutooth 5.0 BINTECH",
+        url: "https://down-vn.img.susercontent.com/file/86b8dcbdbbb78a8453922910804434ec_tn",
+        price: 99000, sold: 1500, discount: 34, flashsale: false},
+        {pid: 6, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 7, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 8, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 9, name: "Tai nghe Bluetooth M10 Pro, Tai nghe không dây M10 Pro phiên bản nâng cấp Pin trâu, chạm cảm ứng",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-leqivbzdtgaa75_tn",
+        price: 119000, sold: 121, discount: 21, flashsale: false},
+        {pid: 10, name: "Vỏ bảo vệ hộp tai nghe bằng silicon dẻo cao cấp cho AirPods Pro 2nd Airpods pro / Airpod 3 / Airpod 1/2（Not Airpods)",
+        url: "https://down-vn.img.susercontent.com/file/41a3a6eb048036feb7f4c6eb534c1a1a_tn",
+        price: 9000, sold: 1300, discount: 10, flashsale: true},
+        {pid: 11, name: "Áo Phông In Chữ SAINT Áo Thun Nam Tay Lỡ Unisex Form Rộng Cao Cấp 100% Thấm Hút Mồ Hôi Hot Trend 2023 ABC",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lg2j0add9nqi82_tn",
+        price: 13000, sold: 121, discount: 50, flashsale: false},
+        {pid: 12, name: "Dép nam nữ quai ngang đúc chữ CD thời trang sành điệu, dép cao cấp, mẫu mới nhất, hot trend, hithot 2023",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh7tgu32kzxv73_tn",
+        price: 2400, sold: 947, discount: 13, flashsale: true},
+        {pid: 13, name: "Loa bluetooth mini 311 BINTECH không dây,nghe nhạc,giá rẻ,công nghệ blutooth 5.0 BINTECH",
+        url: "https://down-vn.img.susercontent.com/file/86b8dcbdbbb78a8453922910804434ec_tn",
+        price: 99000, sold: 1500, discount: 34, flashsale: false},
+        {pid: 14, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 15, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 16, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 17, name: "Tai nghe Bluetooth M10 Pro, Tai nghe không dây M10 Pro phiên bản nâng cấp Pin trâu, chạm cảm ứng",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-leqivbzdtgaa75_tn",
+        price: 119000, sold: 121, discount: 21, flashsale: false},
+        {pid: 18, name: "Vỏ bảo vệ hộp tai nghe bằng silicon dẻo cao cấp cho AirPods Pro 2nd Airpods pro / Airpod 3 / Airpod 1/2（Not Airpods)",
+        url: "https://down-vn.img.susercontent.com/file/41a3a6eb048036feb7f4c6eb534c1a1a_tn",
+        price: 9000, sold: 1300, discount: 10, flashsale: true},
+        {pid: 19, name: "Áo Phông In Chữ SAINT Áo Thun Nam Tay Lỡ Unisex Form Rộng Cao Cấp 100% Thấm Hút Mồ Hôi Hot Trend 2023 ABC",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lg2j0add9nqi82_tn",
+        price: 13000, sold: 121, discount: 50, flashsale: false},
+        {pid: 20, name: "Dép nam nữ quai ngang đúc chữ CD thời trang sành điệu, dép cao cấp, mẫu mới nhất, hot trend, hithot 2023",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh7tgu32kzxv73_tn",
+        price: 2400, sold: 947, discount: 12, flashsale: true},
+        {pid: 21, name: "Loa bluetooth mini 311 BINTECH không dây,nghe nhạc,giá rẻ,công nghệ blutooth 5.0 BINTECH",
+        url: "https://down-vn.img.susercontent.com/file/86b8dcbdbbb78a8453922910804434ec_tn",
+        price: 99000, sold: 1500, discount: 34, flashsale: false},
+        {pid: 22, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 23, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 24, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 25, name: "Tai nghe Bluetooth M10 Pro, Tai nghe không dây M10 Pro phiên bản nâng cấp Pin trâu, chạm cảm ứng",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-leqivbzdtgaa75_tn",
+        price: 119000, sold: 121, discount: 21, flashsale: false},
+        {pid: 26, name: "Vỏ bảo vệ hộp tai nghe bằng silicon dẻo cao cấp cho AirPods Pro 2nd Airpods pro / Airpod 3 / Airpod 1/2（Not Airpods)",
+        url: "https://down-vn.img.susercontent.com/file/41a3a6eb048036feb7f4c6eb534c1a1a_tn",
+        price: 9000, sold: 1300, discount: 10, flashsale: true},
+        {pid: 27, name: "Áo Phông In Chữ SAINT Áo Thun Nam Tay Lỡ Unisex Form Rộng Cao Cấp 100% Thấm Hút Mồ Hôi Hot Trend 2023 ABC",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lg2j0add9nqi82_tn",
+        price: 13000, sold: 121, discount: 50, flashsale: false},
+        {pid: 28, name: "Dép nam nữ quai ngang đúc chữ CD thời trang sành điệu, dép cao cấp, mẫu mới nhất, hot trend, hithot 2023",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh7tgu32kzxv73_tn",
+        price: 2400, sold: 947, discount: 12, flashsale: true},
+        {pid: 29, name: "Loa bluetooth mini 311 BINTECH không dây,nghe nhạc,giá rẻ,công nghệ blutooth 5.0 BINTECH",
+        url: "https://down-vn.img.susercontent.com/file/86b8dcbdbbb78a8453922910804434ec_tn",
+        price: 99000, sold: 1500, discount: 34, flashsale: false},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+        {pid: 30, name: "Quạt tản nhiệt G6 Làm mát điện thoại Phụ kiện chơi game Pubg Mobile giá rẻ cho điện thoại di động",
+        url: "https://down-vn.img.susercontent.com/file/29b434ddd879def894707a0880a441ff_tn",
+        price: 81000, sold: 851, discount: 19, flashsale: false},
+        {pid: 31, name: "Áo Sơmi BASIC CỔ VEST FULLTAG | Sơ Mi Lụa Mềm CNK 100% | CHUẨN CAO CẤP",
+        url: "https://down-vn.img.susercontent.com/file/6b5d7dab6e8d64b6bf6d9210833d8119_tn",
+        price: 85000, sold: 22300, discount: 50, flashsale: false},
+        {pid: 32, name: "Dép đúc Bánh Mì Nam Nữ Hình Gấu chất liệu EVA cao cấp không thấm nước đế cao 5cm - VeoStore",
+        url: "https://down-vn.img.susercontent.com/file/vn-11134201-23030-52h666xe5fov0b_tn",
+        price: 75000, sold: 2800, discount: 50, flashsale: true},
+
+    ],
+
+    renderSixthBlockContent() {
+        let html = ''
+        for (let i =0; i < 48; i++) {
+            let product = this.listSixBlockProduct[i]
+            html += `
+            <div class="sixth-block__content-item-div">
+            <div class="sixth-block__content-item-border">
+
+                <div class="sixth-block__content-item">
+                    <div class="sixth-block__content-item-main">
+                        <img class="sixth-block__content-item-main-img" src="${product.url}" alt="">
+                        <p class="sixth-block__content-item-main-favourite">Yêu thích</p>
+                        <div class="sixth-block__content-item-main-favourite-under"></div>
+                        <div class="sixth-block__content-item-main-discount">
+                            <p class="sixth-block__content-item-main-discount-percent">${product.discount}%</p>
+                            <p class="sixth-block__content-item-main-discount-giam">GIẢM</p>
+                        </div>
+                    </div>
+
+                    <div class="sixth-block__content-item-info">
+                        <p class="sixth-block__content-item-info-name">${product.name}</p>
+                        <div class="sixth-block__content-item-info-undername">
+                            <p class="sixth-block__content-item-info-undername-price">₫${product.price.format()}</p>
+                            <p class="sixth-block__content-item-info-undername-sold">Đã bán ${product.sold.format()}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sixth-block__content-item-hover-findmore">
+                    <p>Tìm sản phẩm tương tự</p>
+                 </div>                        
+            </div>
+        </div>
+            `
+        } sixthBlockContentProducts.innerHTML = html
+    },
+
+
     start() {
         //header
         this.handleHover()
@@ -566,6 +773,8 @@ const app = {
         this.renderFifthBlockProduct()
 
         this.handleFifthBlockProduct()
+
+        this.renderSixthBlockContent()
     }
 }
 
