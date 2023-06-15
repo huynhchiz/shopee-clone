@@ -1,0 +1,139 @@
+:root {
+    --orangecolor: linear-gradient(#f53d2d, #f63);
+    --white: white;
+}
+
+.footer {
+    background-color: #fbfbfb;
+    width: 100%;
+}
+
+.middle-footer {
+    width: 1200px;
+    margin: auto;
+}
+
+.footer-infor {
+    width: 100%;
+    margin: 0 -5px;
+    padding-top: 40px;
+    display: flex;
+}
+
+.footer-infor h2 {
+    font-size: 12px;
+    color: rgba(0,0,0,.87);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.footer-infor p {
+    color: rgba(0,0,0,.65);
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.footer-infor p:hover {
+    cursor: pointer;
+    color: #f53d2d;
+}
+
+.footer-infor-item {
+    width: 250px;
+    padding: 5px;
+}
+
+.footer-infor-payment-listpay {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.footer-infor-payment-listpay img {
+    width: 56px;
+    height: 26px;
+    padding: 4px;
+    margin: 0 8px 8px 0;
+    border-radius: 0.125rem;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    box-sizing: border-box;
+}
+
+.footer-infor-payment-listshipping {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.footer-infor-payment-listshipping img {
+    width: 56px;
+    height: 26px;
+    padding: 4px;
+    margin: 0 8px 8px 0;
+    border-radius: 0.125rem;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    box-sizing: border-box;
+}
+
+.infor-socialfollow-item {
+    display: flex;
+    align-content: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.infor-socialfollow-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.footer-infor-item.infor-download {
+    width: 200px;
+}
+
+.infor-socialfollow-item span{
+    color: rgba(0,0,0,.65);
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.socialfollow-item1:hover .socialfollow-item1-span,
+.socialfollow-item2:hover .socialfollow-item2-span,
+.socialfollow-item3:hover .socialfollow-item3-span {
+    color: #f53d2d;
+}
+
+.infor-download-items {
+    display: flex;
+    cursor: pointer;
+}
+
+.footer-infor-download-left {
+    width: 88px;
+    height: 88px;
+    padding: 4px;
+    margin-right: 12px;
+    background-color: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    border-radius: 2px;
+}
+
+.footer-infor-download-right {
+    width: 4.75rem;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer-infor-download-right img {
+    width: 76px;
+    height: 24px;
+    padding: 4px;
+    margin-bottom: 4px;    
+    background-color: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    border-radius: 2px;
+}
+
