@@ -47,101 +47,19 @@ const fifthBlockProducts = $('.fifth-block-products')
 const fifthBlockArrowRight = $('.fifth-block__arrow-right')
 const fifthBlockArrowLeft = $('.fifth-block__arrow-left')
 const sixthBlockContentProducts = $('.sixth-block__content-products')
+const footerContentCategory = $('.footer-content-category-content')
 
 const app = {
     //HEADER + BANNER + MENU
-    handleHover() {
-        //hover vào tải ứng dụng
-        downloadElement.onmouseover = function() {
-            popupDownloadElement.classList.add('popup-active')
-        }
-        downloadElement.onmouseout = function() {
-            popupDownloadElement.classList.remove('popup-active')
-        }
-        popupDownloadElement.onmouseover = function() {
-            popupDownloadElement.classList.add('popup-active')
-        }
-        popupDownloadElement.onmouseout = function() {
-            popupDownloadElement.classList.remove('popup-active')
-        }
-
-        //hover vào thông báo
-        notiElement.onmouseover = function() {
-            popupNotiElement.classList.add('popup-active')
-        }
-        notiElement.onmouseout = function() {
-            popupNotiElement.classList.remove('popup-active')
-        }
-        popupNotiElement.onmouseover = function() {
-            popupNotiElement.classList.add('popup-active')
-        }
-        popupNotiElement.onmouseout = function() {
-            popupNotiElement.classList.remove('popup-active')
-        }
-
-        //hover vào language
-        languageElement.onmouseover = function() {
-            popupLanguageElement.classList.add('popup-active')
-        }
-        languageElement.onmouseout = function() {
-            popupLanguageElement.classList.remove('popup-active')
-        }
-        popupLanguageElement.onmouseover = function() {
-            popupLanguageElement.classList.add('popup-active')
-        }
-        popupLanguageElement.onmouseout = function() {
-            popupLanguageElement.classList.remove('popup-active')
-        }
-
-        //hover vào giỏ hàng
-        cartElement.onmouseover = function() {
-            popupCardElement.classList.add('popup-active')
-        }
-        cartElement.onmouseout = function() {
-            popupCardElement.classList.remove('popup-active')
-        }
-        popupCardElement.onmouseover = function() {
-            popupCardElement.classList.add('popup-active')
-        }
-        popupCardElement.onmouseout = function() {
-            popupCardElement.classList.remove('popup-active')
-        }
-        
-        //hover vào banner left + hover vào mũi tên
-        leftBanner.onmouseover = function() {
-            bannerArrowLeft.classList.add('display-arrows-banner')
-            bannerArrowRight.classList.add('display-arrows-banner')
-        },
-        leftBanner.onmouseout = function() {
-            bannerArrowLeft.classList.remove('display-arrows-banner')
-            bannerArrowRight.classList.remove('display-arrows-banner')
-        }
-
-        bannerArrowLeft.onmouseover = function() {
-            bannerArrowLeft.classList.add('arrow-active')
-        }
-
-        bannerArrowLeft.onmouseout = function() {
-            bannerArrowLeft.classList.remove('arrow-active')
-        }
-
-        bannerArrowRight.onmouseover = function() {
-            bannerArrowRight.classList.add('arrow-active')
-        }
-
-        bannerArrowRight.onmouseout = function() {
-            bannerArrowRight.classList.remove('arrow-active')
-        }
-
-    },
-
     handleSearchBar() {
         searchText.onclick = function(e) {
             searchResultBar.classList.add('search-result-active')
+            boxSearchResultBar.style.zIndex = "9999"
         }
         
         body.onclick = function(e) {
             searchResultBar.classList.remove('search-result-active')
+            boxSearchResultBar.style.zIndex = "0"
         }
 
         searchInputBar.onclick = function(e) {
@@ -745,10 +663,174 @@ const app = {
         } sixthBlockContentProducts.innerHTML = html
     },
 
+    //CONTENT-footer
+    listFooterCategory: [
+        {name: "Thời trang nam", list: [
+            "Áo Khoác","Áo Vest và Blazer","Áo Hoodie, Áo Len & Áo Nỉ","Quần Jeans","Quần Dài/Quần Âu",
+            "Quần Short","Áo","Áo Ba Lỗ","Đồ Lót","Đồ Ngủ","Đồ Bộ","Vớ/Tất","Trang Phục Truyền Thống","Đồ Hóa Trang","Trang Phục Ngành Nghề",
+            "Khác","Trang Sức Nam","Kính Mắt Nam","Thắt Lưng Nam","Cà vạt & Nơ cổ","Phụ Kiện Nam"
+        ]},
+        {name: "NHÀ CỬA VÀ ĐỜI SỐNG", list: [
+            "Chăn, Ga, Gối & Nệm","Đồ nội thất","Trang trí nhà cửa","Dụng cụ & Thiết bị tiện ích",
+            "Đồ dùng nhà bếp và hộp đựng thực phẩm","Đèn","Ngoài trời & Sân vườn","Đồ dùng phòng tắm",
+            "Vật phẩm thờ cúng","Đồ trang trí tiệc","Chăm sóc nhà cửa và giặt ủi","Sắp xếp nhà cửa",
+            "Dụng cụ pha chế","Tinh dầu thơm phòng","Đồ dùng phòng ăn"
+        ]},
+        {name: "đồng hồ", list: [
+            'Đồng Hồ Nam','Đồng Hồ Nữ','Bộ Đồng Hồ & Đồng Hồ Cặp','Đồng Hồ Trẻ Em','Phụ Kiện Đồng Hồ',"Khác"
+        ]},
+        {name: "phụ kiện & trang sức nữ", list: [
+            "Nhẫn","Bông tai","Khăn choàng","Găng tay","Phụ kiện tóc","Vòng tay & Lắc tay","Lắc chân","Mũ",
+            "Dây chuyền","Kính mắt","Kim loại quý","Thắt lưng","Cà vạt & Nơ cổ","Phụ kiện thêm","Bộ phụ kiện",
+            "Khác","Vớ/ Tất","Ô/Dù"
+        ]},
+        {name: "balo & túi ví nam", list: [
+            "Ba Lô Nam","Ba Lô Laptop Nam","Túi & Cặp Đựng Laptop","Túi Chống Sốc Laptop Nam","Túi Tote Nam",
+            "Cặp Xách Công Sở Nam","Ví Cầm Tay Nam","Túi Đeo Hông & Túi Đeo Ngực Nam","Túi Đeo Chéo Nam",
+            "Bóp/Ví Nam","Khác"
+        ]},
+        {name: "voucher & dịch vụ", list: [
+            "Nhà hàng & Ăn uống","Sự kiện & Giải trí","Nạp tiền tài khoản","Sức khỏe & Làm đẹp","Gọi xe",
+            "Khóa học","Du lịch & Khách sạn","Mua sắm","Mã quà tặng Shopee","Thanh toán hóa đơn","Dịch vụ khác"
+        ]},
+        {name: "thời trang nữ", list: [
+            "Quần","Quần đùi","Chân váy","Quần jeans","Đầm/Váy","Váy cưới","Đồ liền thân",
+            "Áo khoác, Áo choàng & Vest","Áo len & Cardigan","Hoodie và Áo nỉ","Bộ","Đồ lót","Đồ ngủ","Áo",
+            "Đồ tập","Đồ Bầu","Đồ truyền thống","Đồ hóa trang","Vải","Vớ/ Tất","Khác"
+        ]},
+        {name: "máy tính & laptop", list: [
+            "Máy Tính Bàn","Màn Hình","Linh Kiện Máy Tính","Thiết Bị Lưu Trữ","Thiết Bị Mạng",
+            "Máy In, Máy Scan & Máy Chiếu","Phụ Kiện Máy Tính","Laptop","Khác","Gaming"
+        ]},
+        {name: "giày dép nữ", list: [
+            "Bốt","Giày Thể Thao/ Sneaker","Giày Đế Bằng","Giày Cao Gót","Giày Đế Xuồng","Xăng-đan Và Dép",
+            "Phụ Kiện Giày","Giày Khác"
+        ]},
+        {name: "thể thao & du lịch", list: [
+            "Vali","Túi du lịch","Phụ kiện du lịch","Dụng Cụ Thể Thao & Dã Ngoại","Giày Thể Thao",
+            "Thời Trang Thể Thao & Dã Ngoại","Phụ Kiện Thể Thao & Dã Ngoại","Khác"
+        ]},
+        {name: "thời trang trẻ em", list: [
+            "Trang phục bé trai","Trang phục bé gái","Giày dép bé trai","Giày dép bé gái","Khác",
+            "Quần áo em bé","Giày tập đi & Tất sơ sinh","Phụ kiện trẻ em"
+        ]},
+        {name: "dụng cụ và thiết bị tiện ích", list: [
+            "Dụng cụ cầm tay","Dụng cụ điện và thiết bị lớn","Thiết bị mạch điện","Vật liệu xây dựng",
+            "Thiết bị và phụ kiện xây dựng"
+
+        ]},
+        {name: "điện thoại & phụ kiện", list: [
+            "Điện thoại","Máy tính bảng","Pin Dự Phòng","Pin Gắn Trong, Cáp và Bộ Sạc",
+            "Ốp lưng, bao da, Miếng dán điện thoại","Bảo vệ màn hình","Đế giữ điện thoại",
+            "Thẻ nhớ","Sim","Phụ kiện khác","Thiết bị khác"
+        ]},
+        {name: "sắc đẹp", list: [
+            "Chăm sóc da mặt","Tắm & chăm sóc cơ thể","Trang điểm","Chăm sóc tóc",
+            "Dụng cụ & Phụ kiện Làm đẹp","Vệ sinh răng miệng","Nước hoa","Chăm sóc nam giới",
+            "Khác","Chăm sóc phụ nữ","Bộ sản phẩm làm đẹp"
+        ]},
+        {name: "giày dép nam", list: [
+            "Bốt","Giày Thể Thao/ Sneakers","Giày Sục","Giày Tây Lười",
+            "Giày Oxfords & Giày Buộc Dây","Xăng-đan và Dép","Phụ kiện giày dép","Khác"
+        ]},
+        {name: "bách hóa online", list: [
+            "Đồ ăn vặt","Đồ chế biến sẵn","Nhu yếu phẩm","Nguyên liệu nấu ăn","Đồ làm bánh",
+            "Sữa - trứng","Đồ uống","Ngũ cốc & mứt","Các loại bánh","Đồ uống có cồn","Bộ quà tặng",
+            "Thực phẩm tươi sống và thực phẩm đông lạnh","Khác"
+        ]},
+        {name: "đồ chơi", list: [
+            "Đồ chơi mô hình","Đồ chơi giải trí","Đồ chơi giáo dục","Đồ chơi cho trẻ sơ sinh & trẻ nhỏ",
+            "Đồ chơi vận động & ngoài trời","Búp bê & Đồ chơi nhồi bông"
+        ]},
+        {name: "mẹ & bé", list: [
+            "Đồ dùng du lịch cho bé","Đồ dùng ăn dặm cho bé","Phụ kiện cho mẹ","Chăm sóc sức khỏe mẹ",
+            "Đồ dùng phòng tắm & Chăm sóc cơ thể bé","Đồ dùng phòng ngủ cho bé","An toàn cho bé",
+            "Thực phẩm cho bé","Chăm sóc sức khỏe bé","Tã & bô em bé","Đồ chơi","Bộ & Gói quà tặng",
+            "Khác","Sữa công thức trên 24 tháng","Sữa công thức 0-24 tháng tuổi"
+        ]},
+        {name: "máy ảnh & máy quay phim", list: [
+            "Máy ảnh - Máy quay phim","Camera giám sát & Camera hệ thống","Thẻ nhớ","Ống kính",
+            "Phụ kiện máy ảnh","Máy bay camera & Phụ kiện"
+        ]},
+        {name: "túi ví nữ", list: [
+            "Ba Lô Nữ","Cặp Laptop","Ví Dự Tiệc & Ví Cầm Tay","Túi Đeo Hông & Túi Đeo Ngực",
+            "Túi Tote","Túi Quai Xách","Túi Đeo Chéo & Túi Đeo Vai","Ví/Bóp Nữ","Phụ Kiện Túi","Khác"
+        ]},
+        {name: "ô tô & xe máy & xe đạp", list: [
+            "Xe đạp, xe điện","Mô tô, xe máy","Xe Ô tô","Mũ bảo hiểm","Phụ kiện xe máy",
+            "Phụ kiện xe đạp","Phụ kiện bên trong ô tô","Dầu nhớt & dầu nhờn","Phụ tùng ô tô",
+            "Phụ tùng xe máy","Phụ kiện bên ngoài ô tô","Chăm sóc ô tô","Dịch vụ cho xe"
+        ]},
+        {name: "giặt giũ & chăm sóc nhà cửa", list: [
+            "Giặt giũ & Chăm sóc nhà cửa","Giấy vệ sinh, khăn giấy","Vệ sinh nhà cửa","Vệ sinh bát đĩa",
+            "Dụng cụ vệ sinh","Chất khử mùi, làm thơm","Thuốc diệt côn trùng","Túi, màng bọc thực phẩm",
+            "Bao bì, túi đựng rác"
+        ]},
+        {name: "thiết bị điện tử", list: [
+            "Thiết bị đeo thông minh","Phụ kiện tivi","Máy Game Console","Phụ kiện Console","Đĩa game",
+            "Linh phụ kiện","Tai nghe nhét tai","Loa","Tivi","Tivi Box","Headphones"
+        ]},
+        {name: "sức khỏe", list: [
+            "Vật tư y tế","Chống muỗi & xua đuổi côn trùng","Thực phẩm chức năng","Tã người lớn",
+            "Hỗ trợ làm đẹp","Hỗ trợ tình dục","Dụng cụ massage và trị liệu","Khác"
+        ]},
+        {name: "thiết bị điện gia dụng", list: [
+            "Đồ gia dụng nhà bếp","Đồ gia dụng lớn","Máy hút bụi & Thiết bị làm sạch",
+            "Quạt & Máy nóng lạnh","Thiết bị chăm sóc quần áo","Khác",
+            "Máy xay, ép, máy đánh trứng trộn bột, máy xay thực phẩm","Bếp điện"
+        ]},
+        {name: "nhà sách online", list: [
+            "Sách Tiếng Việt ","Sách ngoại văn ","Gói Quà ","Bút viết ","Dụng cụ học sinh & văn phòng ",
+            "Màu, Họa Cụ và Đồ Thủ Công ","Sổ và Giấy Các Loại ","Quà Lưu Niệm ",
+            "Nhạc cụ và phụ kiện âm nhạc"
+        ]},
+        {name: "chăm sóc thú cưng", list: [
+            "Thức ăn cho thú cưng","Phụ kiện cho thú cưng","Vệ sinh cho thú cưng","Quần áo thú cưng",
+            "Chăm sóc sức khỏe","Làm đẹp cho thú cưng","Khác"
+        ]},
+    ],
+
+    renderFooterCategory() {
+        let html = ''
+        for (let i = 0; i < this.listFooterCategory.length; i+=6) {
+            for (let j = 0; j < this.listFooterCategory[i].list.length; j ++) {
+                html += `
+                <div class="footer-content-category-content-column">
+                    <div class="footer-category-column-div">
+                        <h2>${this.listFooterCategory[i].name}</h2>
+                        <div class="footer-category-column-div-items">
+                            <p>${this.listFooterCategory[i].list[j]}</p>
+                            <p>Áo Vest và Blazer</p>
+                            <p>Áo Hoodie, Áo Len & Áo Nỉ</p>
+                            <p>Quần Jeans</p>
+                            <p>Quần Dài/Quần Âu</p>
+                            <p>Quần Short</p>
+                            <p>Áo</p>
+                            <p>Áo Ba Lỗ</p>
+                            <p>Đồ Lót</p>
+                            <p>Đồ Ngủ</p>
+                            <p>Đồ Bộ</p>
+                            <p>Vớ/Tất</p>
+                            <p>Trang Phục Truyền Thống</p>
+                            <p>Đồ Hóa Trang</p>
+                            <p>Trang Phục Ngành Nghề</p>
+                            <p>Khác</p>
+                            <p>Trang Sức Nam</p>
+                            <p>Kính Mắt Nam</p>
+                            <p>Thắt Lưng Nam</p>
+                            <p>Cà vạt & Nơ cổ</p>
+                            <p>Phụ Kiện Nam</p>
+                        </div>
+                    </div>
+                </div>
+            `
+            }
+        } footerContentCategory.innerHTML = html
+    },
 
     start() {
         //header
-        this.handleHover()
+        // this.handleHover()
 
         this.handleSearchBar()
 
@@ -775,6 +857,8 @@ const app = {
         this.handleFifthBlockProduct()
 
         this.renderSixthBlockContent()
+
+        // this.renderFooterCategory()
     }
 }
 
