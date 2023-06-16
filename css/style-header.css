@@ -30,8 +30,8 @@ body {
 }
 
 .middle-header {
-    width: 1200px;
-    margin: 0px auto;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .navbar {
@@ -45,6 +45,7 @@ body {
 
 .nav-flex {
     display: flex;
+    justify-content: space-between;
     color: var(--white);
     line-height: 1.2;
 }
@@ -98,7 +99,7 @@ body {
 }
 
 .navbar__space {
-
+    width: 0px;
 }
 
 .navbar__links {
@@ -278,7 +279,7 @@ body {
 }
 
 .wrapper-logo {
-    margin: -1.5px 28px 0 8px;
+    margin: -1.5px 40px 0 0px;
 }
 
 .wrapper-logo__img {
@@ -290,10 +291,16 @@ body {
 }
 
 .search {
-    
+    width: 840px;
+    min-width: 300px;
+    margin: auto;
+    position: relative;
 }
 
 .search-input {
+    /* max-width: 100%; */
+    /* min-width: 150px; */
+    position: relative;
     padding: 3px;
     border-radius: 2px;
     background-color: var(--white);
@@ -301,8 +308,12 @@ body {
     display: flex;
 }
 
+.search-input__bar {
+    width: 92.5%;
+    min-width: 150px;
+}
+
 .search-input form {
-    width: 774px;
     height: 34px;
     border: none;
 }
@@ -310,18 +321,17 @@ body {
 .search-input input {
     padding-left: 10px;
     font-size: 14px;
-    width: 760px;
+    width: 100%;
     height: 34px;
     border: none;
 }
 
-.search-input input:focus-visible {
-
-}
-
 .search-input__btn {
+    position: absolute;
     text-align: center;
+    right: 3px;
     width: 60px;
+    height: 34px;
     border-radius: 2px;
     background-color: #fb5533;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
@@ -339,11 +349,12 @@ body {
 
 .box-search-result {
     padding-top: 5px;
-    width: 747px;
-    position: fixed;
+    width: 90%;
+    position: absolute;
 }
 
-.search-result {
+.search-result {    
+    min-width: 220px;
     background-color: var(--white);
     box-shadow: 0 0.125rem 10px rgba(0,0,0,.3);
     border-radius: 2px;
@@ -359,6 +370,14 @@ body {
     display: flex;
 }
 
+.result-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 20px;
+
+}
+
 .result-text i{
     color: #f4907c;
     margin-right: 5px;
@@ -371,14 +390,19 @@ body {
 }
 
 .search-suggest {
+    width: 100%;
+    height: 20px;
     color: var(--white);
     font-size: 12px;
-    margin-top: 7px;
+    margin-top: 6px;
+    overflow-y: hidden;
 }
 
 .search-suggest__item {
-    cursor: pointer;
     display: inline-block;
+    width: 50px;
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .search-suggest__item + .search-suggest__item {
