@@ -19,8 +19,8 @@ const searchResultBar = $('.search-result')
 const searchText = $('#search-text')
 const resultVoucherItem = $('.result-voucher')
 const resultSearchText = $('.result-text')
-const popupCardElement = $('.popup-cart')
-const cartElement = $('.wrapper__shopcart i')
+const popupCartElement = $('.popup-cart')
+const cartElement = $('.wrapper__shopcart')
 const leftBanner = $('.left-banners')
 const bannerImgs = $('.banner-imgs')
 const bannerImg = $('.banner-img')
@@ -57,6 +57,33 @@ const miniChatImg = $('.mini-chat-with-admin-clicked-main-img')
 
 const app = {
     //HEADER + BANNER + MENU
+    handleHoverHeader() {
+        notiElement.onmouseover = () => {
+            popupNotiElement.style.display = 'block'
+            popupNotiElement.style.animation = 'minichat-showup ease 150ms forwards'
+        }
+        notiElement.onmouseout = () => {
+            popupNotiElement.style.animation = 'minichat-hide ease 150ms forwards'
+        }
+
+        languageElement.onmouseover = () => {
+            popupLanguageElement.style.display = 'block'
+            popupLanguageElement.style.animation = 'minichat-showup ease 150ms forwards'
+        }
+        languageElement.onmouseout = () => {
+            popupLanguageElement.style.animation = 'minichat-hide ease 150ms forwards'
+        }
+
+        cartElement.onmouseover = () => {
+            popupCartElement.style.display = 'block'
+            popupCartElement.style.animation = 'minichat-showup ease 150ms forwards'
+        }
+        cartElement.onmouseout = () => {
+            popupCartElement.style.animation = 'minichat-hide ease 150ms forwards'
+        }
+
+    },
+
     handleSearchBar() {
         searchText.onclick = function(e) {
             searchResultBar.classList.add('search-result-active')
@@ -860,13 +887,18 @@ const app = {
                 minichatBig.style.display = 'none'
             }, 250)
             minichatBig.style.animation = 'minichat-hide ease 250ms forwards'
-            
-
         }
+
+        miniChatImg.onclick = () => {
+            window.open('https://www.facebook.com/profile.php?id=100044276865706', '_blank')
+        }
+
     },
 
     start() {
         //header
+        this.handleHoverHeader()
+
         this.handleSearchBar()
 
         //banner + menu

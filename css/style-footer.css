@@ -327,6 +327,7 @@
     height: 200px;
     margin-bottom: 60px;
     transition: ease 250ms;
+    cursor: pointer;
 }
 
 .mini-chat-with-admin-clicked-main-img img {
@@ -335,3 +336,4 @@
     border-radius: 50%;
     opacity: 0.9;
 }
+
