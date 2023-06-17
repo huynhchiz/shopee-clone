@@ -1366,7 +1366,7 @@
     color: #ee4d2d;
 }
 
-.footer-category-column-div-items p::after {
+.footer-category-column-div-items p:not(:last-child)::after {
     content: '';
     border-left: 1px solid rgba(0,0,0,.54);
     margin-left: 4px;

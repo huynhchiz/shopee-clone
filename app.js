@@ -48,6 +48,12 @@ const fifthBlockArrowRight = $('.fifth-block__arrow-right')
 const fifthBlockArrowLeft = $('.fifth-block__arrow-left')
 const sixthBlockContentProducts = $('.sixth-block__content-products')
 const footerContentCategory = $('.footer-content-category-content')
+const minichatSmall = $('.mini-chat-with-admin-unclick')
+const minichatBig = $('.mini-chat-with-admin-clicked')
+const arrowSlideSmallChat = $('.mini-chat-with-admin-clicked-title-right-ic1')
+const arrowSlideBigChat = $('.mini-chat-with-admin-clicked-title-right-ic2')
+const arrowHideBigChat = $('.mini-chat-with-admin-clicked-title-right-ic3')
+const miniChatImg = $('.mini-chat-with-admin-clicked-main-img')
 
 const app = {
     //HEADER + BANNER + MENU
@@ -827,9 +833,40 @@ const app = {
         }  footerContentCategory.innerHTML = htmls;
     },
 
+    handleMiniChat() {
+        minichatSmall.onclick = () => {
+            minichatBig.style.animation = 'minichat-showup ease 250ms'
+            minichatSmall.style.display = 'none'
+            minichatBig.style.display = 'block'
+        }
+
+        arrowSlideSmallChat.onclick = () => {
+            arrowSlideSmallChat.classList.remove('mini-chat-active-icon-slide')
+            arrowSlideBigChat.classList.add('mini-chat-active-icon-slide')
+            minichatBig.style.width = '222px'
+            miniChatImg.style.scale = '0.5'
+        }
+
+        arrowSlideBigChat.onclick = () => {
+            arrowSlideBigChat.classList.remove('mini-chat-active-icon-slide')
+            arrowSlideSmallChat.classList.add('mini-chat-active-icon-slide')
+            minichatBig.style.width = '632px'
+            miniChatImg.style.scale = '1'
+        }
+
+        arrowHideBigChat.onclick = () => {
+            setTimeout(function() {
+                minichatSmall.style.display = 'flex'
+                minichatBig.style.display = 'none'
+            }, 250)
+            minichatBig.style.animation = 'minichat-hide ease 250ms forwards'
+            
+
+        }
+    },
+
     start() {
         //header
-
         this.handleSearchBar()
 
         //banner + menu
@@ -857,6 +894,9 @@ const app = {
         this.renderSixthBlockContent()
 
         this.renderFooterCategory()
+
+        //minichat
+        this.handleMiniChat()
     }
 }
 
