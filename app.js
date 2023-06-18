@@ -24,7 +24,7 @@ const cartElement = $('.wrapper__shopcart')
 const leftBanner = $('.left-banners')
 const bannerImgs = $('.banner-imgs')
 const bannerImg = $('.banner-img')
-const bannerImgimg = $('.banner-img img')
+const bannerImgimg = $$('.banner-img img')
 const bannerArrowLeft = $('.left-banners-arrow.arrow-left')
 const bannerArrowRight = $('.left-banners-arrow.arrow-right')
 const dotsBanner = $$('.dot')
@@ -124,73 +124,100 @@ const app = {
     },
 
     handleSlideBanner() {
-        //render banners
         function renderBanner() {
             let html = ''
             for (let i = 0; i < 13; i++) {
                 html += `
                     <div class="banner-img">
-                        <img class="imgbanner" src="./css/img/banner/w${i+1}.jpg">
+                        <img class="imgbanner" src="./css/img/banner/w${i}.jpg">
                     </div>
                 `
             } 
-            bannerImgs.innerHTML = html
+            bannerImgs.innerHTML = 
+            `
+                <div class="banner-img">
+                    <img class="imgbanner" src="./css/img/banner/w${12}.jpg">
+                </div>
+            ` + 
+            html +
+            `
+                <div class="banner-img">
+                    <img class="imgbanner" src="./css/img/banner/w${0}.jpg">
+                </div>
+            ` 
         }
         renderBanner()
 
-        let currentIndexBanner = 0;
-        let pxTransOnebanner = 796.67;
-
-        function slideToCurrentBanner() {
-            let numberTranslateX = (currentIndexBanner * pxTransOnebanner)
-            bannerImgs.style.transform = `translateX(-${numberTranslateX}px)`
-
+        let index = 0       
+        
+        function slideToCurrentDotBanner() {            
             setTimeout(function() {
-                if ($('.dot-active') !== dotsBanner[currentIndexBanner]) {
+                if ($('.dot-active') !== dotsBanner[index]) {
                     $('.dot-active').classList.remove('dot-active')
                 }
-                dotsBanner[currentIndexBanner].classList.add('dot-active')
+                dotsBanner[index].classList.add('dot-active')
             }, 500)
         }
-        
-        //click nút mũi tên trái
-        bannerArrowLeft.onclick = function() {
-            if (currentIndexBanner > 0) {
-                currentIndexBanner--
-            } else {
-                currentIndexBanner = 12
-            }
-            slideToCurrentBanner()
+
+        function checkIndexMax() {
+            setTimeout(function() {
+                if(index === 13) {
+                    bannerImgs.style.transition = `none`
+                    index = 0;
+                    bannerImgs.style.transform = `translateX(-${100 + (index * 100)}%)`
+                    console.log(index)
+                }
+            }, 500)
+        }
+        function checkIndexMin() {
+            setTimeout(function() {
+                if(index === -1) {
+                    bannerImgs.style.transition = `none`
+                    index = 12;
+                    bannerImgs.style.transform = `translateX(-${100 + (index * 100)}%)`
+                    console.log(index)
+                }
+            }, 500)
         }
 
-        //click nút mũi tên phải
         bannerArrowRight.onclick = function() {
-            if (currentIndexBanner <= 11) {
-                currentIndexBanner++
-            } else {
-                currentIndexBanner = 0
-            }
-            slideToCurrentBanner()
+            index++
+            bannerImgs.style.transition = `500ms ease`
+            bannerImgs.style.transform = `translateX(-${100 + (index * 100)}%)`
+            console.log(index)
+            checkIndexMax()
+            slideToCurrentDotBanner()
         }
 
-        //click vào dot banner
+        bannerArrowLeft.onclick = function() {
+            index--
+            bannerImgs.style.transition = `500ms ease`
+            bannerImgs.style.transform = `translateX(-${100 + (index * 100)}%)`
+            console.log(index)
+            checkIndexMin()
+            slideToCurrentDotBanner()
+        }
+        
+        //click vào dot hiện banner
         for (let i = 0; i < dotsBanner.length; i++) {
             dotsBanner[i].onclick = function() {
-                currentIndexBanner = i
-                slideToCurrentBanner()
+                index = i
+                bannerImgs.style.transform = `translateX(-${100 + (index * 100)}%)`
+                console.log(index)
+                slideToCurrentDotBanner()
             }
         }
 
-        //banner tiến tới 1 sau mỗi 5 giây
         setInterval(function() {
-            if (currentIndexBanner <= 11) {
-                currentIndexBanner++
-            } else {
-                currentIndexBanner = 0
-            }
-            slideToCurrentBanner()
+            index++
+            bannerImgs.style.transition = `500ms ease`
+            bannerImgs.style.transform = `translateX(-${100 + (index * 100)}%)`
+            console.log(index)
+            checkIndexMax()
+            slideToCurrentDotBanner()
         }, 5000)
-    },
+    }
+    ,
 
     //CONTENT
     ////second-block
@@ -318,64 +345,93 @@ const app = {
         for (let i = 0; i < 5; i++) {
             html += `
                 <div class="fourth-block__content-left-img-div">
-                    <img class="fourth-block__content-left-img" src="./css/img/block4/block4-${i+1}.jpg">
+                    <img class="fourth-block__content-left-img" src="./css/img/block4/block4-${i}.jpg">
                 </div>
             `   
-        } fourthBlockBanners.innerHTML = html
+        } fourthBlockBanners.innerHTML = 
+        `
+            <div class="fourth-block__content-left-img-div">
+                <img class="fourth-block__content-left-img" src="./css/img/block4/block4-${4}.jpg">
+            </div>
+        ` +
+        html +
+        `
+            <div class="fourth-block__content-left-img-div">
+                <img class="fourth-block__content-left-img" src="./css/img/block4/block4-${0}.jpg">
+            </div>
+        `
     },
 
-    handleFourthBlockBanner() {
-        let currentIndexBanner = 0;
-        let pxTransOnebanner = 390;
-
-        function handleFourthBlockDots() {
-            if ($('.fb-dot-active') !== fourthBlockDots[currentIndexBanner]) {
-                $('.fb-dot-active').classList.remove('fb-dot-active')
-            }
-            fourthBlockDots[currentIndexBanner].classList.add('fb-dot-active')
+    handleFourthBlockBanner() { 
+        let index = 0   
+        function slideToCurrentDotBanner() {            
+            setTimeout(function() {
+                if ($('.fb-dot-active') !== fourthBlockDots[index]) {
+                    $('.fb-dot-active').classList.remove('fb-dot-active')
+                }
+                fourthBlockDots[index].classList.add('fb-dot-active')
+            }, 500)
         }
-        
-        function slideToCurrentBanner() {
-            let numberTranslateX = (currentIndexBanner * pxTransOnebanner)
-            fourthBlockBanners.style.transform = `translateX(-${numberTranslateX}px)`
 
-            setTimeout(handleFourthBlockDots, 500)
-        }     
+        function checkIndexMax() {
+            setTimeout(function() {
+                if(index === 5) {
+                    fourthBlockBanners.style.transition = `none`
+                    index = 0;
+                    fourthBlockBanners.style.transform = `translateX(-${100 + (index * 100)}%)`
+                    console.log(index)
+                }
+            }, 500)
+        }
 
-        function forwardBanner() {
-            if (currentIndexBanner <= 3) {
-                currentIndexBanner++
-            } else {
-                currentIndexBanner = 0
-            }
-            slideToCurrentBanner()
-        }   
+        function checkIndexMin() {
+            setTimeout(function() {
+                if(index === -1) {
+                    fourthBlockBanners.style.transition = `none`
+                    index = 4;
+                    fourthBlockBanners.style.transform = `translateX(-${100 + (index * 100)}%)`
+                    console.log(index)
+                }
+            }, 500)
+        }
 
-        //banner tiến tới 1 sau mỗi 5 giây
-        let autoNextBanner = setInterval(forwardBanner, 5000)
-
-        autoNextBanner
+        fourthBlockArrowRight.onclick = function() {
+            index++
+            fourthBlockBanners.style.transition = `500ms ease`
+            fourthBlockBanners.style.transform = `translateX(-${100 + (index * 100)}%)`
+            console.log(index)
+            checkIndexMax()
+            slideToCurrentDotBanner()
+        }
 
         fourthBlockArrowLeft.onclick = function() {
-            if (currentIndexBanner > 0) {
-                currentIndexBanner--
-            } else {
-                currentIndexBanner = 4
-            }
-            slideToCurrentBanner()
+            index--
+            fourthBlockBanners.style.transition = `500ms ease`
+            fourthBlockBanners.style.transform = `translateX(-${100 + (index * 100)}%)`
+            console.log(index)
+            checkIndexMin()
+            slideToCurrentDotBanner()
         }
-
-        fourthBlockArrowRight.onclick = function() {                      
-            forwardBanner()
-        }
-
-        // click vào dot banner
+        
+        //click vào dot hiện banner
         for (let i = 0; i < fourthBlockDots.length; i++) {
             fourthBlockDots[i].onclick = function() {
-                currentIndexBanner = i
-                slideToCurrentBanner()            
+                index = i
+                fourthBlockBanners.style.transform = `translateX(-${100 + (index * 100)}%)`
+                console.log(index)
+                slideToCurrentDotBanner()
             }
         }
+
+        setInterval(function() {
+            index++
+            fourthBlockBanners.style.transition = `500ms ease`
+            fourthBlockBanners.style.transform = `translateX(-${100 + (index * 100)}%)`
+            console.log(index)
+            checkIndexMax()
+            slideToCurrentDotBanner()
+        }, 5000)
+        
     },
 
     listFourthBlockContent: [
